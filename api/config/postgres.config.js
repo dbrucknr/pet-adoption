@@ -1,4 +1,5 @@
-module.exports = {
+const { Pool } = require('pg');
+const client = new Pool({
     HOST: process.env.HOST,
     USER: process.env.USER,
     PASSWORD: process.env.PASSWORD,
@@ -10,4 +11,17 @@ module.exports = {
         acquire: 30000,
         idle: 10000
     }
+});
+
+const execute = async (query) => {
+    try {
+        await client.connect();
+        await client.query(query);
+        return true;
+    } catch (error) {
+        console.error(error.stack);
+        return false;
+    };
 }
+
+module.exports = { execute }
