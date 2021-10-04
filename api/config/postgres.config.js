@@ -13,15 +13,16 @@ const client = new Pool({
     }
 });
 
-const execute = async (query) => {
-    try {
-        await client.connect();
-        await client.query(query);
-        return true;
-    } catch (error) {
-        console.error(error.stack);
-        return false;
-    };
-}
+const connect = async () => await client.connect();
+// const execute = async (query) => {
+//     try {
+//         await client.connect();
+//         await client.query(query);
+//         return true;
+//     } catch (error) {
+//         console.error(error.stack);
+//         return false;
+//     };
+// }
 
-module.exports = { execute }
+module.exports = { connect }
