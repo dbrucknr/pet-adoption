@@ -15,6 +15,6 @@ app.use(morgan("common"));
 require('./routes/user.routes')(app);
 require('./routes/auth.routes')(app);
 
-app.listen(8000, ()=> {
+app.listen(8000, () => {
     console.log('API Active')
-})
+});

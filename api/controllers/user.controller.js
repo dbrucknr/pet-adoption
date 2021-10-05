@@ -38,6 +38,25 @@ exports.createUser = async (name, email, res, next) => {
     });
 };
 
+exports.updateUser = async (id, name, email, res, next) => {
+    await db.query(queries.updateUser, [name, email, id], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result)
+    });
+};
+
+exports.deleteUser =  async (id, res, next) => {
+    await db.query(queries.deleteUser, [id], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result)
+    });
+};
+
+// TO BE MOVED TO ADMIN CONTROLLER
 exports.showAllTables = async (res, next) => {
     await db.query(queries.showAllTables, [], (err, result) => {
         if (err) {

@@ -18,7 +18,28 @@ module.exports = app => {
             console.error(error);
             return res.status(500).send('An Error Has Occurred') 
         }
-    })
+    });
+
+    router.put('/update-user/:id', async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            const { name, email } = req.body.user;
+            await users.updateUser(name, email, id, res, next);
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send('An Error Has Occurred') 
+        }
+    });
+
+    router.delete('/delete-user/:id', async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            await users.deleteUser(id, res, next);
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send('An Error Has Occurred')     
+        }
+    });
 
     router.get('/', async (req, res, next) => {
         await users.findAllUsers(res, next);
