@@ -19,8 +19,15 @@ module.exports = {
         return client.query(text, params, (err, res) => {
           const duration = Date.now() - start
           console.log('executed query', { text, duration, rows: res.rowCount })
-          callback(err, res)
-        })
+          callback(err, res);
+        });
+    },
+    async queryResponse(text, params) {
+        const start = Date.now()
+        const res = await client.query(text, params)
+        const duration = Date.now() - start
+        console.log('executed query', { text, duration, rows: res.rowCount })
+        return res
     },
     async getClient (callback) {
         client.connect((err, client, done) => {

@@ -1,15 +1,6 @@
 const db = require('../db');
 const queries = require('../queries/user.queries');
 
-exports.createTable = async (res, next) => {
-    await db.query(queries.createUserTable, [], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result)
-    });
-};
-
 exports.findAllUsers = async (res, next) => {
     await db.query(queries.findAllUsers, [], (err, result) => {
         if (err) {
@@ -29,21 +20,12 @@ exports.findSpecificUser = async (id, res, next) => {
     });
 };
 
-exports.createUser = async (name, email, res, next) => {
-    db.query(queries.createUser, [name, email], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result)
-    });
-};
-
 exports.updateUser = async (id, name, email, res, next) => {
     await db.query(queries.updateUser, [name, email, id], (err, result) => {
         if (err) {
             return next(err)
         };
-        res.send(result)
+        res.send(result.rows[0])
     });
 };
 
@@ -63,6 +45,15 @@ exports.showAllTables = async (res, next) => {
             return next(err)
         };
         console.log(result)
+        res.send(result)
+    });
+};
+
+exports.createTable = async (res, next) => {
+    await db.query(queries.createUserTable, [], (err, result) => {
+        if (err) {
+            return next(err)
+        };
         res.send(result)
     });
 };
