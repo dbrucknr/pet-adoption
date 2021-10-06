@@ -10,7 +10,7 @@ module.exports = {
         WHERE schemaname != 'pg_catalog' AND 
             schemaname != 'information_schema';
     `,
-    dropUserTable: `DROP TABLE users`,
+    dropUserTable: `DROP TABLE IF EXISTS users`,
     findAllUsers: `SELECT * FROM users`,
     findSpecificUser: `SELECT * FROM users WHERE id = $1`,
     updateUser: `UPDATE users SET name = ($3), email = ($1) WHERE id = ($2)`,

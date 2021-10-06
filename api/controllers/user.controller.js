@@ -40,6 +40,7 @@ exports.deleteUser =  async (id, res, next) => {
 
 // TO BE MOVED TO ADMIN CONTROLLER
 exports.showAllTables = async (res, next) => {
+    console.log('showalltables')
     await db.query(queries.showAllTables, [], (err, result) => {
         if (err) {
             return next(err)
