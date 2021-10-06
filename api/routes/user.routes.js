@@ -21,6 +21,15 @@ module.exports = app => {
         }
     });
 
+    router.post('/drop-table', async (_, res, next) => {
+        try {
+            await users.dropTable(res, next);
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send('An Error Has Occurred')     
+        }
+    });
+
     router.post('/create-user', async (req, res, next) => {
         try {
             const { name, email } = req.body.user;

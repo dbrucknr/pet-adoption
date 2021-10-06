@@ -8,9 +8,10 @@ exports.registerUser = async (user, res, next) => {
         const checkEmail = await db.queryResponse(queries.findUser, [email]);
         console.log('checkEmail', checkEmail.rowCount);
         if (checkEmail.rowCount > 0) {
-            res.status(500).send('Email is in use')
+            res.status(500).send('Email is in use');
+            return
         };
-        await db.query(queries.registerUser, [name, email], (err, result) => {
+        await db.query(queries.registerUser, [name, email, password], (err, result) => {
             if (err) {
                 return next(err)
             };
@@ -20,7 +21,6 @@ exports.registerUser = async (user, res, next) => {
     } catch (error) {
         console.error(error);
         res.status(500).send('An Error Occurred')
-    }
-
+    };
 };
 
