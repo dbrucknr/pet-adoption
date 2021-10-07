@@ -27,3 +27,39 @@ exports.createConversation = async (members, res, next) => {
         res.send(result);
     });
 };
+
+exports.selectConversation = async (id, res, next) => {
+    await db.query(queries.selectSpecifcConversation, [id], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result);
+    });
+};
+
+exports.selectAllConversations = async (res, next) => {
+    await db.query(queries.selectAllConversations, [], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result);
+    });
+};
+
+exports.updateConversation = async (members, id, res, next) => {
+    await db.query(queries.updateConversationsMembers, [id, members], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result);
+    });
+};
+
+exports.deleteConversation = async (id, res, next) => {
+    await db.query(queries.deleteConversation, [id], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result);
+    });
+};
