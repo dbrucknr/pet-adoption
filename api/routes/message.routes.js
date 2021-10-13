@@ -20,5 +20,31 @@ module.exports = app => {
         }
     });
 
+    router.post('/create', async (req, res, next) => {
+        const { conversation_id, sender_id, message } = req.body.message;
+        try {
+            await messages.createMessage(
+                conversation_id,
+                sender_id,
+                message,
+                res, 
+                next
+            );
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send('An Error Has Occurred')  
+        }
+    });
+
+    router.get('/:id', async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            await messages.findConversationMessages(id, res, next);
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send('An Error Has Occurred')  
+        }
+    });
+
     app.use('/api/messages', router);
 };

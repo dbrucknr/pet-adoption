@@ -12,4 +12,10 @@ module.exports = {
                 REFERENCES users(ID)
     )`,
     dropMessageTable: `DROP TABLE IF EXISTS messages`,
+    createMessage: `INSERT INTO messages (
+        conversation_id,
+        sender_id,
+        message
+    ) VALUES ($1, $2, $3)`,
+    findConversationMessages: `SELECT * FROM messages WHERE conversation_id = $1`
 }

@@ -37,12 +37,30 @@ exports.selectConversation = async (id, res, next) => {
     });
 };
 
+exports.selectMyConversations = async (id, res, next) => {
+    await db.query(queries.selectMyConversations, [id], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result.rows);
+    });
+};
+
+exports.selectConversationBetween = async (ids, res, next) => {
+    await db.query(queries.selectConversationBetween, [ids], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result.rows);
+    });
+};
+
 exports.selectAllConversations = async (res, next) => {
     await db.query(queries.selectAllConversations, [], (err, result) => {
         if (err) {
             return next(err)
         };
-        res.send(result);
+        res.send(result.rows);
     });
 };
 

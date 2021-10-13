@@ -19,7 +19,7 @@ module.exports = {
         return client.query(text, params, (err, res) => {
           const duration = Date.now() - start
           console.log(text, params, res)
-          console.log('executed query', { text, duration, rows: res.rowCount })
+        //   console.log('executed query', { text, duration, rows: res.rowCount })
           callback(err, res);
         });
     },
