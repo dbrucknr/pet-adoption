@@ -45,7 +45,7 @@ module.exports = app => {
     });
 
     // SELECT ALL CONVERSATIONS
-    router.get('/', async (req, res, next) => {
+    router.get('/', async (_, res, next) => {
         try {
             await conversations.selectAllConversations(res, next);
         } catch (error) {
@@ -99,6 +99,5 @@ module.exports = app => {
         }
     });
   
-
     app.use('/api/conversations', router);
 };

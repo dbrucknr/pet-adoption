@@ -17,5 +17,10 @@ module.exports = {
         sender_id,
         message
     ) VALUES ($1, $2, $3)`,
-    findConversationMessages: `SELECT * FROM messages WHERE conversation_id = $1`
+    deleteMessage: `DELETE FROM messages WHERE id = $1`,
+    updateMessage: `UPDATE messages SET message = ($2) WHERE id = ($1)`,
+    findConversationMessages: `SELECT * FROM messages WHERE conversation_id = $1`,
+    selectAllMessages: `SELECT * FROM messages`,
+    selectMySentMessages: `SELECT * FROM messages WHERE sender_id = $1`,
+    findSpecificMessage: `SELECT * FROM messages WHERE id = $1`
 }

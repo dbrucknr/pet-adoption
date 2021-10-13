@@ -36,3 +36,39 @@ exports.findConversationMessages = async (id, res, next) => {
         res.send(result.rows);   
     });
 };
+
+exports.deleteMessage = async (id, res, next) => {
+    await db.query(queries.deleteMessage, [id], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result);    
+    });
+};
+
+exports.updateMessage = async (id, res, next) => {
+    await db.query(queries.updateMessage, [id], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result);    
+    });
+};
+
+exports.getAllMessages = async (res, next) => {
+    await db.query(queries.selectAllMessages, [], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result);  
+    });
+};
+
+exports.findMessage = async (id, res, next) => {
+    await db.query(queries.findSpecificMessage, [id], (err, result) => {
+        if (err) {
+            return next(err)
+        };
+        res.send(result);  
+    });
+};
