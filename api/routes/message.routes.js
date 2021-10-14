@@ -63,7 +63,8 @@ module.exports = app => {
     router.put('/:id', async (req, res, next) => {
         try {
             const { id } = req.params;
-            await messages.updateMessage(id, res, next);
+            const { message } = req.body;
+            await messages.updateMessage(id, message, res, next);
         } catch (error) {
             console.error(error);
             return res.status(500).send('An Error Has Occurred')  

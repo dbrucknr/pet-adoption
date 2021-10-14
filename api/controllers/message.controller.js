@@ -1,74 +1,27 @@
 const db = require('../db');
 const queries = require('../queries/message.queries');
+const issueSQL = require('./utils');
 
-exports.createTable = async (res, next) => {
-    await db.query(queries.createMessageTable, [], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);
-    }); 
-};
+exports.createTable = async (res, next) => 
+    issueSQL(queries.createMessageTable, res, next, []);
 
-exports.dropTable = async (res, next) => {
-    await db.query(queries.dropMessageTable, [], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);
-    });
-};
+exports.dropTable = async (res, next) => 
+    issueSQL(queries.dropMessageTable, res, next, []);
 
-exports.createMessage = async (conversation_id, sender_id, message, res, next) => {
-    await db.query(queries.createMessage, [conversation_id, sender_id, message], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result); 
-    })
-};
+exports.createMessage = async (conversation_id, sender_id, message, res, next) => 
+    issueSQL(queries.createMessage, res, next, [conversation_id, sender_id, message]);
 
-exports.findConversationMessages = async (id, res, next) => {
-    await db.query(queries.findConversationMessages, [id], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result.rows);   
-    });
-};
+exports.findConversationMessages = async (id, res, next) => 
+    issueSQL(queries.findConversationMessages, res, next, [id]);
 
-exports.deleteMessage = async (id, res, next) => {
-    await db.query(queries.deleteMessage, [id], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);    
-    });
-};
+exports.deleteMessage = async (id, res, next) => 
+    issueSQL(queries.deleteMessage, res, next, [id]);
 
-exports.updateMessage = async (id, res, next) => {
-    await db.query(queries.updateMessage, [id], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);    
-    });
-};
+exports.updateMessage = async (id, message, res, next) => 
+    issueSQL(queries.updateMessage, res, next, [id, message]);
 
-exports.getAllMessages = async (res, next) => {
-    await db.query(queries.selectAllMessages, [], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);  
-    });
-};
+exports.getAllMessages = async (res, next) => 
+    issueSQL(queries.selectAllMessages, res, next, []);
 
-exports.findMessage = async (id, res, next) => {
-    await db.query(queries.findSpecificMessage, [id], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);  
-    });
-};
+exports.findMessage = async (id, res, next) => 
+    issueSQL(queries.findSpecificMessage, res, next, [id]);
