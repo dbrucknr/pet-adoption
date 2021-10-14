@@ -1,5 +1,5 @@
 const db = require('../db');
-const queries = require('../queries/auth.queries');
+const queries = require('../db/auth.queries');
 
 exports.registerUser = async (user, res, next) => {
     const { name, email, password } = user;
