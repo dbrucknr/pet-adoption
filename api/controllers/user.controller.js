@@ -1,4 +1,4 @@
-const _ = require('../queries/user.queries');
+const _ = require('../db/user.queries');
 const issueSQL = require('./utils');
 
 exports.findAllUsers = async (res, next) => 

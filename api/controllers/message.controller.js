@@ -1,4 +1,4 @@
-const _ = require('../queries/message.queries');
+const _ = require('../db/message.queries');
 const issueSQL = require('./utils');
 
 exports.createTable = async (res, next) => 
@@ -8,12 +8,7 @@ exports.dropTable = async (res, next) =>
     issueSQL(_.dropMessageTable, res, next, []);
 
 exports.createMessage = async (conversation_id, sender_id, message, res, next) => 
-    issueSQL(_.createMessage, res, next, [
-        conversation_id, 
-        sender_id, 
-        message
-    ]
-);
+    issueSQL(_.createMessage, res, next, [conversation_id, sender_id, message]);
 
 exports.findConversationMessages = async (id, res, next) => 
     issueSQL(_.findConversationMessages, res, next, [id]);

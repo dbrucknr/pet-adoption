@@ -1,4 +1,4 @@
-const _ = require('../queries/conversation.queries');
+const _ = require('../db/conversation.queries');
 const issueSQL = require('./utils');
 
 exports.createTable = async (res, next) => 
