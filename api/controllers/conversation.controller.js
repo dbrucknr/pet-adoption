@@ -1,83 +1,29 @@
-const db = require('../db');
-const queries = require('../queries/conversation.queries');
+const _ = require('../queries/conversation.queries');
+const issueSQL = require('./utils');
 
-exports.createTable = async (res, next) => {
-    await db.query(queries.createConversationTable, [], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);
-    });
-};
+exports.createTable = async (res, next) => 
+    issueSQL(_.createConversationTable, res, next, []);
 
-exports.dropTable = async (res, next) => {
-    await db.query(queries.dropConversationTable, [], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);
-    });
-};
+exports.dropTable = async (res, next) => 
+    issueSQL(_.dropConversationTable, res, next, []);
 
-exports.createConversation = async (members, res, next) => {
-    await db.query(queries.createConversation, [members], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);
-    });
-};
+exports.createConversation = async (members, res, next) => 
+    issueSQL(_.createConversation, res, next, [members]);
 
-exports.selectConversation = async (id, res, next) => {
-    await db.query(queries.selectSpecifcConversation, [id], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);
-    });
-};
+exports.selectConversation = async (id, res, next) => 
+    issueSQL(_.selectSpecifcConversation, res, next, [id]);
 
-exports.selectMyConversations = async (id, res, next) => {
-    await db.query(queries.selectMyConversations, [id], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result.rows);
-    });
-};
+exports.selectMyConversations = async (id, res, next) => 
+    issueSQL(_.selectMyConversations, res, next, [id]);
 
-exports.selectConversationBetween = async (ids, res, next) => {
-    await db.query(queries.selectConversationBetween, [ids], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result.rows);
-    });
-};
+exports.selectConversationBetween = async (ids, res, next) => 
+    issueSQL(_.selectConversationBetween, res, next, [ids]);
 
-exports.selectAllConversations = async (res, next) => {
-    await db.query(queries.selectAllConversations, [], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result.rows);
-    });
-};
+exports.selectAllConversations = async (res, next) => 
+    issueSQL(_.selectAllConversations, res, next, []);
 
-exports.updateConversation = async (members, id, res, next) => {
-    await db.query(queries.updateConversationsMembers, [id, members], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);
-    });
-};
+exports.updateConversation = async (members, id, res, next) => 
+    issueSQL(_.updateConversationsMembers, res, next, [id, members]);
 
-exports.deleteConversation = async (id, res, next) => {
-    await db.query(queries.deleteConversation, [id], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);
-    });
-};
+exports.deleteConversation = async (id, res, next) => 
+    issueSQL(_.deleteConversation, res, next, [id]);

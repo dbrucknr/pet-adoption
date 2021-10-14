@@ -1,69 +1,24 @@
-const db = require('../db');
-const queries = require('../queries/user.queries');
+const _ = require('../queries/user.queries');
+const issueSQL = require('./utils');
 
-exports.findAllUsers = async (res, next) => {
-    await db.query(queries.findAllUsers, [], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        const { rowCount, rows } = result;
-        rowCount > 0 ? res.send(rows) : res.send([])
-    });
-};
+exports.findAllUsers = async (res, next) => 
+    issueSQL(_.findAllUsers, res, next, []);
 
-exports.findSpecificUser = async (id, res, next) => {
-    await db.query(queries.findSpecificUser, [id], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result)
-    });
-};
+exports.findSpecificUser = async (id, res, next) => 
+    issueSQL(_.findSpecificUser, res, next, [id]);
 
-exports.updateUser = async (id, name, email, res, next) => {
-    await db.query(queries.updateUser, [name, email, id], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result.rows[0])
-    });
-};
+exports.updateUser = async (id, name, email, res, next) => 
+    issueSQL(_.updateUser, res, next, [name, email, id]);
 
-exports.deleteUser =  async (id, res, next) => {
-    await db.query(queries.deleteUser, [id], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result)
-    });
-};
+exports.deleteUser =  async (id, res, next) => 
+    issueSQL(_.deleteUser, res, next, [id]);
 
 // TO BE MOVED TO ADMIN CONTROLLER
-exports.showAllTables = async (res, next) => {
-    console.log('showalltables')
-    await db.query(queries.showAllTables, [], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        console.log(result)
-        res.send(result)
-    });
-};
+exports.showAllTables = async (res, next) => 
+    issueSQL(_.showAllTables, res, next, []);
 
-exports.createTable = async (res, next) => {
-    await db.query(queries.createUserTable, [], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);
-    });
-};
+exports.createTable = async (res, next) => 
+    issueSQL(_.createUserTable, res, next, []);
 
-exports.dropTable = async (res, next) => {
-    await db.query(queries.dropUserTable, [], (err, result) => {
-        if (err) {
-            return next(err)
-        };
-        res.send(result);
-    });
-}
+exports.dropTable = async (res, next) => 
+    issueSQL(_.dropUserTable, res, next, []);
