@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+    <Sidebar />
     <router-view />
     <Footer />
   </div>
@@ -11,9 +12,12 @@
 
 <script>
 import Footer from '@/components/base/Footer.vue';
+import Sidebar from '@/components/base/Sidebar.vue';
+
 export default {
   components: {
-    Footer
+    Footer,
+    Sidebar
   }
 }
 </script>

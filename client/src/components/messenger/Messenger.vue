@@ -5,13 +5,15 @@
 </template>
 
 <script>
+// import { mapActions, mapMutations, mapState } from 'vuex';
+
 export default {
     name: 'Messenger',
     computed: {
 
     }, 
     methods: {
-        
+
     }
 }
 </script>
