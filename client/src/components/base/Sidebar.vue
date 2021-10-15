@@ -1,17 +1,24 @@
 <template>
     <div class="sidebar">
-        <p>Sidebar</p>
+        <p>Conversations</p>
+        <div v-for="convo in getMyConversations" 
+            :key="convo.id"
+        >
+            <p>{{ convo.members }}</p>
+        </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
     name: 'Sidebar',
     computed: {
-
+        ...mapGetters('messages', ['getMyConversations'])
     },
     methods: {
-        
+
     }
 }
 </script>

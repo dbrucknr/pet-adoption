@@ -13,7 +13,17 @@ module.exports = app => {
             console.error(error);
             return res.status(500).send('An Error Has Occurred')   
         }
-    })
+    });
+
+    router.post('/login', async (req, res, next) => {
+        try {
+            const { email, password } = req.body;
+            await auth.logUserIn(email, res, next);
+        } catch (error) {
+            console.error(error);
+            return res.status(500).send('An Error Has Occurred')     
+        }
+    });
 
     app.use('/api/auth', router);
 };
