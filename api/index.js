@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const app = express();
 dotenv.config();
@@ -10,6 +11,9 @@ dotenv.config();
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(cors({
+    origin: 'http://localhost:8080'
+}));
 
 // routes
 require('./routes/user.routes')(app);

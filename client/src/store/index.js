@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import MessengerStore from './messenger/messengerStore';
 
 export default createStore({
   state: {
@@ -11,5 +12,6 @@ export default createStore({
 
   },
   modules: {
+    messages: MessengerStore
   }
 })

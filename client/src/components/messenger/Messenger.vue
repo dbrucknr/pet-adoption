@@ -1,11 +1,11 @@
 <template>
     <div>
-        <button>Messenger</button>
+        <button @click="selectMyConversations">Messenger</button>
     </div>
 </template>
 
 <script>
-// import { mapActions, mapMutations, mapState } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
     name: 'Messenger',
@@ -13,7 +13,7 @@ export default {
 
     }, 
     methods: {
-
+        ...mapActions('messages', ['selectMyConversations'])
     }
 }
 </script>
