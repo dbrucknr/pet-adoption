@@ -1,10 +1,14 @@
 <template>
-  <div>
+  <div class="main-container">
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <Sidebar />
+
+    <transition name="fade">
+      <Sidebar />
+    </transition>
+
     <router-view />
     <Footer />
   </div>
@@ -23,6 +27,12 @@ export default {
 </script>
 
 <style>
+.v-enter-active, .v-leave-active {
+  transition: opacity .5s ease;
+}
+.v-enter, .v-leave-to {
+  opacity: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
