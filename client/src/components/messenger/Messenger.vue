@@ -1,7 +1,11 @@
 <template>
     <div>
         <button 
-            @click="(selectMyConversations() && setShowSidebar(!getShowSidebar))"
+            @click="(
+                selectMyConversations() 
+                    && 
+                setShowSidebar(!getShowSidebar)
+            )"
         >
             Messenger
         </button>
