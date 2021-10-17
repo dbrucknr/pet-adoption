@@ -114,6 +114,6 @@ export default {
     .message-container {
         position: relative;
         bottom: 0;
-        height: 75%;
+        height: 60%;
     }
 </style>

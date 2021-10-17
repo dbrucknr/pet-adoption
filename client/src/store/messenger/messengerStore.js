@@ -16,7 +16,7 @@ export default {
             state.showSidebar = boolean;
         },
         addMessageToConversation(state, message) {
-            state.conversationArray.push(message);
+            state.conversationMessages.push(message);
         }
     },
     actions: {
@@ -43,8 +43,8 @@ export default {
                 const data = {
                     message : {
                         conversation_id: 1,
-                        sender_id: 1,
-                        message: 'message'
+                        sender_id: 5,
+                        message: 'Hard-coded in Vuex'
                     }
                   };
                   console.log(data)
@@ -58,7 +58,7 @@ export default {
                     
                 });
                 if (response.ok) {
-                    commit('addMessageToConversation', 'message');
+                    commit('addMessageToConversation', data);
                 }
                 // const json = await response.json();
             } catch (error) {
