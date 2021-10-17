@@ -19,7 +19,12 @@
                 <br>
                 <div v-for="message in getConversationMessages" :key="message.id">
                     <p>Sender: {{ message.sender_id }} - {{ message.message }}</p>
-                    <!-- <p>{{ message.message }}</p> -->
+                </div>
+                <div class="message-container">
+                    <div class="message-input">
+                        <input v-model="messageContent">
+                        <button @click="createAndSendMessage">Send</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,7 +40,8 @@ export default {
         return {
             expand: 'expanded-sidebar',
             collapse: 'collapsed-sidebar',
-            showMessagePanel: false
+            showMessagePanel: false,
+            messageContent: ''
         }
     },
     computed: {
@@ -46,10 +52,16 @@ export default {
         ])
     },
     methods: {
-        ...mapActions('messages', ['loadConversationMessages']),
+        ...mapActions('messages', [
+            'loadConversationMessages', 
+            'sendMessage'
+        ]),
         showPanelLoadMessages(id) {
             this.showMessagePanel = true;
             this.loadConversationMessages(id);
+        },
+        createAndSendMessage() {
+            this.sendMessage([1, 1, 'Hello third'])
         }
     }
 }
@@ -67,7 +79,7 @@ export default {
         height: 100%;
         overflow: auto;
     }
-   .expanded-sidebar {
+    .expanded-sidebar {
         margin: 0;
         left: 0;
         padding: 0;
@@ -83,7 +95,7 @@ export default {
         background: black;
         color: white;
         width: 100%;
-        height: 100%;
+        height: 90%;
         position: absolute;
         top: 0;
         right: 0;
@@ -95,5 +107,13 @@ export default {
     .hide-messages {
         transform: translateY(-100%);
     }
-
+    .message-input {
+        position: absolute;
+        bottom: 0;
+    }
+    .message-container {
+        position: relative;
+        bottom: 0;
+        height: 75%;
+    }
 </style>

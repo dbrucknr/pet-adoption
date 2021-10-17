@@ -22,6 +22,7 @@ module.exports = app => {
 
     // CREATE A NEW MESSAGE
     router.post('/create', async (req, res, next) => {
+        console.log('req.body.message')
         const { conversation_id, sender_id, message } = req.body.message;
         try {
             await messages.createMessage(
