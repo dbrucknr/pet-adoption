@@ -1,10 +1,11 @@
 const io = require("socket.io")(8100, {
+    transports: ["websocket"],
     cors: {
-      origin: "http://localhost:3000",
+      origin: "http://localhost:8080",
     },
 });
 
-const USERS = [];
+let USERS = [];
 
 const setUserOnline = (userId, socketId) => 
     !USERS.some((user) => user.userId === userId) && USERS.push({ userId, socketId });
@@ -14,6 +15,15 @@ const setUserOffline = socketId =>
 
 const findUser = userId => 
     USERS.find((user) => user.userId === userId)
+
+io.use((socket, next) => {
+    const username = socket.handshake.auth.username;
+    if (!username) {
+        return next(new Error("invalid username"));
+    }
+    socket.username = username;
+    next();
+});
 
 io.on("connection", (socket) => {
     console.log("Connection Detected");

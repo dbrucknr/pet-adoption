@@ -20,12 +20,12 @@
                 <div v-for="message in getConversationMessages" :key="message.id">
                     <p>Sender: {{ message.sender_id }} - {{ message.message }}</p>
                 </div>
-                <div class="message-container">
-                    <div class="message-input">
-                        <input v-model="messageContent">
-                        <button @click="createAndSendMessage">Send</button>
-                    </div>
-                </div>
+            </div>
+        </div>
+        <div class="input-container">
+            <div class="message-input">
+                <input v-model="messageContent">
+                <button @click="createAndSendMessage">Send</button>
             </div>
         </div>
     </div>
@@ -33,6 +33,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import socket from "../../socket";
 
 export default {
     name: 'Sidebar',
@@ -43,6 +44,16 @@ export default {
             showMessagePanel: false,
             messageContent: ''
         }
+    },
+    created() {
+        socket.on("connect_error", (err) => {
+            if (err.message === "invalid username") {
+                console.error('Username Error')
+            }
+        });
+    },
+    destroyed() {
+        socket.off("connect_error");
     },
     computed: {
         ...mapGetters('messages', [
@@ -59,6 +70,8 @@ export default {
         showPanelLoadMessages(id) {
             this.showMessagePanel = true;
             this.loadConversationMessages(id);
+            socket.auth = { username: 'currentUser' }
+            socket.connect()
         },
         createAndSendMessage() {
             this.sendMessage([1, 1, 'Hello third'])
@@ -103,6 +116,7 @@ export default {
         left: 0;
         display: block;
         text-align: center;
+        overflow-y: scroll;
     }
     .hide-messages {
         transform: translateY(-100%);
@@ -111,9 +125,9 @@ export default {
         position: absolute;
         bottom: 0;
     }
-    .message-container {
+    .input-container {
         position: relative;
         bottom: 0;
-        height: 60%;
+        /* height: 60%; */
     }
 </style>
