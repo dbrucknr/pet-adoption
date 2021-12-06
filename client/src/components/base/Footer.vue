@@ -1,16 +1,28 @@
 <template>
     <div class="footer">
-        <Messenger />
+        <button 
+            @click="(
+                selectMyConversations() 
+                    && 
+                setShowSidebar(!getShowSidebar)
+            )"
+        >
+            Messenger
+        </button>
     </div>
 </template>
 
 <script>
-import Messenger from '../messenger/Messenger.vue';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 
 export default {
     name: 'Footer',
-    components: {
-        Messenger
+    computed: {
+        ...mapGetters('messages', ['getShowSidebar'])
+    }, 
+    methods: {
+        ...mapActions('messages', ['selectMyConversations']),
+        ...mapMutations('messages', ['setShowSidebar'])
     }
 }
 </script>

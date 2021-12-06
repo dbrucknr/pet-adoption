@@ -41,5 +41,6 @@ export default {
         padding: 10px;
         background-color: green;
         border-radius: 20px;
+        max-width: 200px;
     }
 </style>
