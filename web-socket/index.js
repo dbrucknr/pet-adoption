@@ -33,6 +33,8 @@ io.on("connection", (socket) => {
         io.emit("getOnlineUsers", USERS);
     });
 
+    // I think receiverId is the same as conversationId
+    // May need to emit to the conversation itself, rather than a single person
     socket.on("sendMessage", ({ senderId, receiverId, message }) => {
         const receiver = findUser(receiverId);
         io.to(receiver.socketId).emit("message", {
@@ -44,4 +46,6 @@ io.on("connection", (socket) => {
         setUserOffline(socket.id);
         io.emit("getOnlineUsers", USERS);
     })
-})
+});
+
+console.log('Socket listening')
