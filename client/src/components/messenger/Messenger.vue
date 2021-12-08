@@ -85,7 +85,7 @@ export default {
         display: flex;
     }
     .chat-menu {
-        flex: 4;
+        flex: 3;
     }
     .chat-menu-input {
         width: 90%;
@@ -96,17 +96,17 @@ export default {
         color: white;
     }
     .chat-box {
-        flex: 4;
+        flex: 6;
     }
     .chat-online {
-        flex: 4;
+        flex: 3;
     }
     .chat-menu-wrapper, .chat-box-wrapper, .chat-online-wrapper {
         padding: 10px;
     }
-    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    ::placeholder {
         color: white;
-        opacity: 1; /* Firefox */
+        opacity: 1;
         text-align: center;
     }
 </style>

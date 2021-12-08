@@ -1,8 +1,8 @@
 <template>
-    <div class="message">
+    <div class="message" :class="self ? 'self': null">
         <div class="message-top">
             <img src="" alt="" class="message-image">
-            <p class="message-text">
+            <p class="message-text" :class="self ? 'self': null">
                 Hello world, this is a sample message.
             </p>
         </div>
@@ -41,6 +41,16 @@ export default {
         padding: 10px;
         background-color: green;
         border-radius: 20px;
-        max-width: 200px;
+        max-width: 100px;
+    }
+    .message.self {
+        align-items: flex-end;
+    }
+    .message-text.self {
+        color: white;
+        padding: 10px;
+        background-color: blue;
+        border-radius: 20px;
+        max-width: 100px;
     }
 </style>
