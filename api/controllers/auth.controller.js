@@ -24,3 +24,17 @@ exports.registerUser = async (user, res, next) => {
     };
 };
 
+exports.logUserIn = async (email, res, next) => {
+    try {
+        await db.query(queries.findUser, [email], (err, result) => {
+            if (err) {
+                return next(err)
+            };
+            const { id, name, email } = result.rows[0];
+            res.send({ id, name, email })  
+        })
+    } catch (error) {
+        
+    }
+}
+

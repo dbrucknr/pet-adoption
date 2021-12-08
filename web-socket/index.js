@@ -1,10 +1,11 @@
 const io = require("socket.io")(8100, {
+    transports: ["websocket"],
     cors: {
-      origin: "http://localhost:3000",
+      origin: "http://localhost:8080",
     },
 });
 
-const USERS = [];
+let USERS = [];
 
 const setUserOnline = (userId, socketId) => 
     !USERS.some((user) => user.userId === userId) && USERS.push({ userId, socketId });
@@ -15,6 +16,15 @@ const setUserOffline = socketId =>
 const findUser = userId => 
     USERS.find((user) => user.userId === userId)
 
+io.use((socket, next) => {
+    const username = socket.handshake.auth.username;
+    if (!username) {
+        return next(new Error("invalid username"));
+    }
+    socket.username = username;
+    next();
+});
+
 io.on("connection", (socket) => {
     console.log("Connection Detected");
 
@@ -23,6 +33,8 @@ io.on("connection", (socket) => {
         io.emit("getOnlineUsers", USERS);
     });
 
+    // I think receiverId is the same as conversationId
+    // May need to emit to the conversation itself, rather than a single person
     socket.on("sendMessage", ({ senderId, receiverId, message }) => {
         const receiver = findUser(receiverId);
         io.to(receiver.socketId).emit("message", {
@@ -34,4 +46,6 @@ io.on("connection", (socket) => {
         setUserOffline(socket.id);
         io.emit("getOnlineUsers", USERS);
     })
-})
+});
+
+console.log('Socket listening')
