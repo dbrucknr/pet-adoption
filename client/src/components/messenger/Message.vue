@@ -1,7 +1,7 @@
 <template>
-    <div class="message" :class="self ? 'self': null">
+    <div :class="self ? 'message self': 'message'">
         <div class="message-top">
-            <img src="" alt="" class="message-image">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="" class="message-image">
             <p class="message-text" :class="self ? 'self': null">
                 Hello world, this is a sample message.
             </p>
@@ -14,7 +14,10 @@
 
 <script>
 export default {
-    name: "Message"
+    name: "Message",
+    props: {
+        self: Boolean
+    }
 }
 </script>
 
@@ -22,12 +25,15 @@ export default {
     .message {
         display: flex;
         flex-direction: column;
+        margin-top: 10px;
     }
     .message-top {
         display: flex;
     }
     .message-bottom {
-
+        display: flex;
+        font-size: 12px;
+        margin-top: 10px;
     }
     .message-image {
         width: 32px;
@@ -46,11 +52,7 @@ export default {
     .message.self {
         align-items: flex-end;
     }
-    .message-text.self {
-        color: white;
-        padding: 10px;
+    .message.self .message-text {
         background-color: blue;
-        border-radius: 20px;
-        max-width: 100px;
     }
 </style>

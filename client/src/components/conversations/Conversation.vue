@@ -1,6 +1,6 @@
 <template>
     <div class="conversation">
-        <img src="" alt="" class="conversation-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" alt="" class="conversation-img">
         <span class="conversation-name">
             Derek
         </span>

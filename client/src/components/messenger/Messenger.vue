@@ -1,24 +1,33 @@
 <template>
     <div class="messenger">
-        <div class="chat-menu">
-            <div class="chat-menu-wrapper">
-                <input placeholder="Search for Contact" class="chat-menu-input" />
+        <div class="message-menu">
+            <div class="message-menu-wrapper">
+                <input placeholder="Search Conversations" class="message-menu-input" />
                 <Conversation />
             </div>
         </div>
-        <div class="chat-box">
-            <div class="chat-box-wrapper">
-                <div class="chat-box-top">
+        <div class="message-box">
+            <div class="message-box-wrapper">
+                <div class="message-box-top">
                     <Message />
+                    <Message self="false" />
+                    <Message />
+                    <Message self="false" />
+                    <Message />
+                    <Message  self="false" />
+                    <Message />
+                    <Message />
+                    <Message self="false" />
                 </div>
-                <div class="chat-box-bottom">
-                    
+                <div class="message-box-bottom">
+                    <textarea class="message-input" placeholder="Send Message"></textarea>
+                    <button class="message-submit-button" type="submit">Send</button>
                 </div>
             </div>
         </div>
-        <div class="chat-online">
-            <div class="chat-online-wrapper">
-                Online
+        <div class="message-online">
+            <div class="message-online-wrapper">
+                <OnlineUsers />
             </div>
         </div>
     </div>
@@ -33,7 +42,8 @@ export default {
     name: 'Messenger',
     components: {
         Message: defineAsyncComponent(() => import('./Message.vue')),
-        Conversation: defineAsyncComponent(() => import('../conversations/Conversation.vue'))
+        Conversation: defineAsyncComponent(() => import('../conversations/Conversation.vue')),
+        OnlineUsers: defineAsyncComponent(() => import('../online/OnlineUsers.vue'))
     },
     data() {
         return {
@@ -81,13 +91,13 @@ export default {
 
 <style>
     .messenger {
-        height: calc(100vh - 70px);
+        height: calc(100vh - 100px);
         display: flex;
     }
-    .chat-menu {
+    .message-menu {
         flex: 3;
     }
-    .chat-menu-input {
+    .message-menu-input {
         width: 90%;
         padding: 10px 2px;
         border: none;
@@ -95,16 +105,45 @@ export default {
         background: transparent;
         color: white;
     }
-    .chat-box {
+    .message-box {
         flex: 6;
     }
-    .chat-online {
+    .message-online {
         flex: 3;
     }
-    .chat-menu-wrapper, .chat-box-wrapper, .chat-online-wrapper {
+    .message-box-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .message-menu-wrapper, .message-box-wrapper, .message-online-wrapper {
+        padding: 10px;
+        height: 100%;
+    }
+    .message-input {
+        width: 80%;
+        height: 90px;
         padding: 10px;
     }
-    ::placeholder {
+    .message-submit-button {
+        width: 50px;
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .message-box-top {
+        height: 90%;
+        overflow-y: scroll;
+        padding-right: 10px;
+    }
+    .message-box-bottom {
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    input::placeholder {
         color: white;
         opacity: 1;
         text-align: center;

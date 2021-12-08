@@ -43,7 +43,7 @@ export default {
         margin: 0;
         left: 0;
         padding: 0;
-        width: 50%;
+        width: 60%;
         background-color: grey;
         transition: 1s ease;
         position: fixed;
