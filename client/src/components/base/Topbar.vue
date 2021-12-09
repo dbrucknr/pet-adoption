@@ -3,7 +3,7 @@
         <div class="top-bar-left">
             <router-link to="/">Home</router-link> |
             <router-link to="/about">About</router-link> |
-            <router-link to="/conversation">Conversations</router-link>
+            <router-link to="/conversations">Conversations</router-link>
         </div>
         <div class="top-bar-center">
             <div class="search">
