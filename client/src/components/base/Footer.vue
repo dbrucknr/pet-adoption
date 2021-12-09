@@ -28,13 +28,13 @@ export default {
 </script>
 
 <style>
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: grey;
-  color: white;
-  text-align: center;
-}
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgba(226,124,58,255);
+        color: white;
+        text-align: center;
+    }
 </style>

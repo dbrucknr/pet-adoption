@@ -89,7 +89,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
     .messenger {
         height: calc(100vh - 100px);
         display: flex;

@@ -21,11 +21,9 @@ export default {
         cursor: pointer;
         margin-top: 20px;
     }
-
     .conversation:hover {
         background-color: white;
     }
-
     .conversation-img {
         width: 40px;
         height: 40px;

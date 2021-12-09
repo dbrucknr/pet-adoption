@@ -36,7 +36,7 @@ export default {
         background-color: grey;
         transition: 1s ease;
         position: fixed;
-        height: 100%;
+        height: 80%;
         overflow: auto;
     }
     .expanded-sidebar {
@@ -47,7 +47,7 @@ export default {
         background-color: grey;
         transition: 1s ease;
         position: fixed;
-        height: 100%;
+        height: 80%;
         overflow: auto;
     }
 </style>

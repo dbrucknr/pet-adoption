@@ -1,15 +1,12 @@
 <template>
   <div class="main-container">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-
+    <Topbar />
     <transition name="fade">
       <Sidebar />
     </transition>
-
-    <router-view />
+    <div class="router-view">
+      <router-view />
+    </div>
     <Footer />
   </div>
 </template>
@@ -17,11 +14,13 @@
 <script>
 import Footer from '@/components/base/Footer.vue';
 import Sidebar from '@/components/base/Sidebar.vue';
+import Topbar from '@/components/base/Topbar.vue'
 
 export default {
   components: {
     Footer,
-    Sidebar
+    Sidebar, 
+    Topbar
   }
 }
 </script>
@@ -35,22 +34,16 @@ export default {
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   color: #2c3e50;
 }
-
-#nav {
-  padding: 30px;
+.main-container {
+  background-color: rgb(237,184,121);
+  height: 100vh;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.router-view {
+  margin-top: 50px;
 }
 </style>
