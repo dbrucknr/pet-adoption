@@ -10,7 +10,7 @@ const ValidMessage = (object, schema) =>
     .map((key) => new Error(`${key} is invalid`)).length === 0;
 
 const Message = (entry) =>
-  !entry && ValidMessage(entry, MessageSchema)
+  !entry || !ValidMessage(entry, MessageSchema)
     ? new Error("Entry Required")
     : {
         save: async function () {
